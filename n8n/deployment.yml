@@ -60,7 +60,7 @@ spec:
               memory: "2Gi"
               cpu: "1"
         - name: n8n-python-runner
-          image: docker.n8n.io/n8nio/n8n-python-runner:latest
+          image: n8nio/n8n-python-runner:latest
           ports:
             - containerPort: 5679
           env:
