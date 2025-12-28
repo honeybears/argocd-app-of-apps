@@ -17,7 +17,7 @@ spec:
   project: default
   source:
     path: postgres
-    repoURL: git@github.com/honeybears/argocd-app-of-apps.git
+    repoURL: https://github.com/honeybears/argocd-app-of-apps.git
     targetRevision: HEAD
   syncPolicy:
     automated:
