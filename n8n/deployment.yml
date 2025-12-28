@@ -23,7 +23,7 @@ spec:
             - containerPort: 5678
           env:
             - name: N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS
-              value: "true"
+              value: "false"
             - name: N8N_RUNNERS_ENABLED
               value: "true"
             - name: DB_TYPE
