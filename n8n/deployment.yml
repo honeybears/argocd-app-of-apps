@@ -42,7 +42,7 @@ spec:
                   name: n8n-secrets
                   key: DB_POSTGRESDB_PASSWORD
             - name: WEBHOOK_URL
-              value: https://workflow.limtaehyun.dev
+              value: https://n8n.lipcloud.org
             - name: N8N_PROXY_HOPS
               value: "1"
           volumeMounts:
