@@ -23,7 +23,7 @@ spec:
             - containerPort: 5678
           env:
             - name: N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS
-              value: "false"
+              value: "true"
             - name: N8N_RUNNERS_ENABLED
               value: "true"
             - name: DB_TYPE
@@ -46,7 +46,7 @@ spec:
             - name: N8N_PROXY_HOPS
               value: "1"
           volumeMounts:
-            - mountPath: /home/node/.n8n
+            - mountPath: /home/node/n8n
               name: n8n-storage
           resources:
             requests:
