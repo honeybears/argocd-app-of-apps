@@ -16,13 +16,6 @@ spec:
         runAsUser: 1000
         runAsGroup: 1000
         fsGroup: 1000
-      initContainers:
-        - name: volume-permissions
-          image: busybox:latest
-          command: ["sh", "-c", "chown -R 1000:1000 /home/node/.n8n"]
-          volumeMounts:
-            - name: n8n-storage
-              mountPath: /home/node/.n8n
       containers:
         - name: n8n
           image: docker.n8n.io/n8nio/n8n:latest
@@ -57,8 +50,8 @@ spec:
               name: n8n-storage
           resources:
             requests:
-              memory: "1Gi"
-              cpu: "0.5"
+              memory: "512Mi"
+              cpu: "100m"
             limits:
               memory: "2Gi"
               cpu: "1"
