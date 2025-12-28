@@ -45,10 +45,6 @@ spec:
               value: https://n8n.lipcloud.org
             - name: N8N_PROXY_HOPS
               value: "1"
-            - name: N8N_RUNNERS_PYTHON_HOST
-              value: "localhost"
-            - name: N8N_RUNNERS_PYTHON_PORT
-              value: "5679"
           volumeMounts:
             - mountPath: /home/node/n8n
               name: n8n-storage
@@ -59,20 +55,6 @@ spec:
             limits:
               memory: "2Gi"
               cpu: "1"
-        - name: n8n-python-runner
-          image: n8nio/n8n-python-runner:latest
-          ports:
-            - containerPort: 5679
-          env:
-            - name: N8N_RUNNER_AUTH_TYPE
-              value: none
-          resources:
-            requests:
-              memory: "512Mi"
-              cpu: "100m"
-            limits:
-              memory: "1Gi"
-              cpu: "0.5"
       volumes:
         - name: n8n-storage
           persistentVolumeClaim:
