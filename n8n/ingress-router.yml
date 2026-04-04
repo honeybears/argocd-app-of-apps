@@ -10,6 +10,9 @@ spec:
   routes:
     - match: Host(`n8n.lipcloud.org`)
       kind: Rule
+      middlewares:
+        - name: authelia
+          namespace: authelia
       services:
         - name: n8n-service
           port: 5678

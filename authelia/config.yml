@@ -1,0 +1,56 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: authelia-config
+  namespace: authelia
+data:
+  configuration.yml: |
+    theme: auto
+    jwt_secret: k8s-authelia-jwt-secret-0123456789abcdef
+    default_2fa_method: totp
+    
+    server:
+      host: 0.0.0.0
+      port: 9091
+    
+    log:
+      level: info
+      format: text
+    
+    identity_validation:
+      reset_password:
+        jwt_secret: k8s-authelia-jwt-secret-0123456789abcdef
+    
+    authentication_backend:
+      password_reset:
+        disable: false
+      file:
+        path: /config/users_database.yml
+    
+    access_control:
+      default_policy: deny
+      rules:
+        - domain: "*.lipcloud.org"
+          policy: one_factor
+    
+    session:
+      name: authelia_session
+      secret: k8s-authelia-session-secret-9876543210fedcba
+      expiration: 3600
+      inactivity: 300
+      domain: lipcloud.org
+    
+    storage:
+      encryption_key: k8s-authelia-storage-key-4567890123abcdefghijklmnopqrstuvwxyz
+      postgres:
+        host: postgres-service.postgres.svc.cluster.local
+        port: 5432
+        database: authelia
+        username: admin
+        password: passwordTest
+        schema: public
+    
+    notifier:
+      disable_startup_check: true
+      filesystem:
+        filename: /config/notification.txt
