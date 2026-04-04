@@ -6,9 +6,40 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/honeybears/argocd-app-of-apps.git
-    targetRevision: HEAD
-    path: traefik
+    repoURL: https://traefik.github.io/charts
+    chart: traefik
+    targetRevision: "*"
+    helm:
+      valuesObject:
+        logs:
+          general:
+            level: DEBUG
+        api:
+          dashboard: true
+        ingressRoute:
+          dashboard:
+            enabled: false
+        ports:
+          traefik:
+            expose:
+              default: false
+          web:
+            redirectTo:
+              port: websecure
+            forwardedHeaders:
+              trustedIPs:
+                - "10.42.0.0/16"
+                - "10.43.0.0/16"
+          websecure:
+            forwardedHeaders:
+              trustedIPs:
+                - "10.42.0.0/16"
+                - "10.43.0.0/16"
+        providers:
+          kubernetesCRD:
+            allowCrossNamespace: true
+        service:
+          type: LoadBalancer
   destination:
     server: https://kubernetes.default.svc
     namespace: kube-system
