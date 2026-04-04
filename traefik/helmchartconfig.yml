@@ -10,6 +10,8 @@ spec:
       - "--api"
       - "--api.dashboard=true"
       - "--log.level=DEBUG"
+      - "--entrypoints.web.forwardedheaders.trustedips=10.42.0.0/16,10.43.0.0/16"
+      - "--entrypoints.websecure.forwardedheaders.trustedips=10.42.0.0/16,10.43.0.0/16"
     ports:
       traefik:
         expose:
@@ -17,15 +19,6 @@ spec:
       web:
         redirectTo:
           port: websecure
-        forwardedHeaders:
-          trustedIPs:
-            - "10.42.0.0/16"
-            - "10.43.0.0/16"
-      websecure:
-        forwardedHeaders:
-          trustedIPs:
-            - "10.42.0.0/16"
-            - "10.43.0.0/16"
     providers:
       kubernetesCRD:
         allowCrossNamespace: true
