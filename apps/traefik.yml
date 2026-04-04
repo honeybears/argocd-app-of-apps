@@ -24,8 +24,11 @@ spec:
             expose:
               default: false
           web:
-            redirectTo:
-              port: websecure
+            redirections:
+              entryPoint:
+                to: websecure
+                scheme: https
+                permanent: true
             forwardedHeaders:
               trustedIPs:
                 - "10.42.0.0/16"
