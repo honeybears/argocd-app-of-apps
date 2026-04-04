@@ -19,25 +19,16 @@ spec:
         ingressRoute:
           dashboard:
             enabled: false
+        additionalArguments:
+          - "--entrypoints.web.http.redirections.entrypoint.to=websecure"
+          - "--entrypoints.web.http.redirections.entrypoint.scheme=https"
+          - "--entrypoints.web.http.redirections.entrypoint.permanent=true"
+          - "--entrypoints.web.forwardedheaders.trustedips=10.42.0.0/16,10.43.0.0/16"
+          - "--entrypoints.websecure.forwardedheaders.trustedips=10.42.0.0/16,10.43.0.0/16"
         ports:
           traefik:
             expose:
               default: false
-          web:
-            redirections:
-              entryPoint:
-                to: websecure
-                scheme: https
-                permanent: true
-            forwardedHeaders:
-              trustedIPs:
-                - "10.42.0.0/16"
-                - "10.43.0.0/16"
-          websecure:
-            forwardedHeaders:
-              trustedIPs:
-                - "10.42.0.0/16"
-                - "10.43.0.0/16"
         providers:
           kubernetesCRD:
             allowCrossNamespace: true
