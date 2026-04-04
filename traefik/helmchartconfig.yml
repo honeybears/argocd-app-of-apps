@@ -17,6 +17,15 @@ spec:
       web:
         redirectTo:
           port: websecure
+        forwardedHeaders:
+          trustedIPs:
+            - "10.42.0.0/16"
+            - "10.43.0.0/16"
+      websecure:
+        forwardedHeaders:
+          trustedIPs:
+            - "10.42.0.0/16"
+            - "10.43.0.0/16"
     providers:
       kubernetesCRD:
         allowCrossNamespace: true
