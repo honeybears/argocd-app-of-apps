@@ -39,8 +39,8 @@ data:
 
     session:
       secret: k8s-authelia-session-secret-9876543210fedcba
-      expiration: 3600
-      inactivity: 300
+      expiration: 1h
+      inactivity: 1h
       cookies:
         - name: authelia_session
           domain: lipcloud.org
