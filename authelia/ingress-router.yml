@@ -13,3 +13,4 @@ spec:
       services:
         - name: authelia-service
           port: 9091
+  tls: {}

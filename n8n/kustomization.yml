@@ -4,7 +4,6 @@ namespace: n8n
 resources:
   - ./secret.yml
   - ./deployment.yml
-  - ./pv.yml
   - ./pvc.yml
   - ./service.yml
   - ./ingress-router.yml

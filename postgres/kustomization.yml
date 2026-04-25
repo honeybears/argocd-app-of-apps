@@ -3,7 +3,7 @@ kind: Kustomization
 namespace: postgres
 resources:
   - ./secret.yml
+  - ./init.yml
   - ./deployment.yml
-  - ./pv.yml
   - ./pvc.yml
   - ./service.yml

@@ -10,9 +10,7 @@ spec:
   routes:
     - match: Host(`registry.lipcloud.org`)
       kind: Rule
-      middlewares:
-        - name: authelia
-          namespace: authelia
       services:
         - name: docker-registry-service
           port: 5000
+  tls: {}

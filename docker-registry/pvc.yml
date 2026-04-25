@@ -5,8 +5,7 @@ metadata:
 spec:
   accessModes:
     - ReadWriteOnce
-  volumeName: docker-registry-pv
-  storageClassName: docker-registry-storage
+  storageClassName: local-path
   resources:
     requests:
       storage: 10Gi

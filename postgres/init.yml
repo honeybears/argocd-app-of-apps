@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: postgres-init
+data:
+  init.sql: |
+    CREATE USER n8n WITH PASSWORD 'passwordTest';
+    CREATE DATABASE n8n OWNER n8n;
+    CREATE DATABASE authelia OWNER admin;
