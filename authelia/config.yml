@@ -39,7 +39,6 @@ data:
         - name: authelia_session
           domain: lipcloud.org
           authelia_url: https://auth.lipcloud.org
-          default_redirection_url: https://lipcloud.org
 
     storage:
       encryption_key: k8s-authelia-storage-key-4567890123abcdefghijklmnopqrstuvwxyz
