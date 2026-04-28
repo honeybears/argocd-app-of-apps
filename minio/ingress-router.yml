@@ -1,0 +1,27 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: minio-console-ingress-router
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`minio.lipcloud.org`)
+      kind: Rule
+      services:
+        - name: minio-service
+          port: 9001
+---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: minio-api-ingress-router
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`s3.lipcloud.org`)
+      kind: Rule
+      services:
+        - name: minio-service
+          port: 9000
