@@ -1,0 +1,13 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: media-processor-ingress-router
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`media.lipcloud.org`)
+      kind: Rule
+      services:
+        - name: media-processor-api-service
+          port: 3000

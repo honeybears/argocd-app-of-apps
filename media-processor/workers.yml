@@ -1,0 +1,227 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: media-processor-worker-ingest
+  labels:
+    app: media-processor
+    role: worker-ingest
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: media-processor
+      role: worker-ingest
+  template:
+    metadata:
+      labels:
+        app: media-processor
+        role: worker-ingest
+    spec:
+      containers:
+        - name: worker
+          image: registry.lipcloud.org/media-processor:latest
+          env:
+            - name: WORKER_ROLE
+              value: ingest
+          envFrom:
+            - configMapRef:
+                name: media-processor-config
+            - secretRef:
+                name: media-processor-env
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "100m"
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: media-processor-worker-transcode-1080p
+  labels:
+    app: media-processor
+    role: worker-transcode-1080p
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: media-processor
+      role: worker-transcode-1080p
+  template:
+    metadata:
+      labels:
+        app: media-processor
+        role: worker-transcode-1080p
+    spec:
+      containers:
+        - name: worker
+          image: registry.lipcloud.org/media-processor:latest
+          env:
+            - name: WORKER_ROLE
+              value: transcode-1080p
+          envFrom:
+            - configMapRef:
+                name: media-processor-config
+            - secretRef:
+                name: media-processor-env
+          resources:
+            requests:
+              memory: "512Mi"
+              cpu: "500m"
+            limits:
+              memory: "2Gi"
+              cpu: "2"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: media-processor-worker-transcode-720p
+  labels:
+    app: media-processor
+    role: worker-transcode-720p
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: media-processor
+      role: worker-transcode-720p
+  template:
+    metadata:
+      labels:
+        app: media-processor
+        role: worker-transcode-720p
+    spec:
+      containers:
+        - name: worker
+          image: registry.lipcloud.org/media-processor:latest
+          env:
+            - name: WORKER_ROLE
+              value: transcode-720p
+          envFrom:
+            - configMapRef:
+                name: media-processor-config
+            - secretRef:
+                name: media-processor-env
+          resources:
+            requests:
+              memory: "512Mi"
+              cpu: "500m"
+            limits:
+              memory: "2Gi"
+              cpu: "2"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: media-processor-worker-thumbnail
+  labels:
+    app: media-processor
+    role: worker-thumbnail
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: media-processor
+      role: worker-thumbnail
+  template:
+    metadata:
+      labels:
+        app: media-processor
+        role: worker-thumbnail
+    spec:
+      containers:
+        - name: worker
+          image: registry.lipcloud.org/media-processor:latest
+          env:
+            - name: WORKER_ROLE
+              value: thumbnail
+          envFrom:
+            - configMapRef:
+                name: media-processor-config
+            - secretRef:
+                name: media-processor-env
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "200m"
+            limits:
+              memory: "1Gi"
+              cpu: "1"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: media-processor-worker-finalize
+  labels:
+    app: media-processor
+    role: worker-finalize
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: media-processor
+      role: worker-finalize
+  template:
+    metadata:
+      labels:
+        app: media-processor
+        role: worker-finalize
+    spec:
+      containers:
+        - name: worker
+          image: registry.lipcloud.org/media-processor:latest
+          env:
+            - name: WORKER_ROLE
+              value: finalize
+          envFrom:
+            - configMapRef:
+                name: media-processor-config
+            - secretRef:
+                name: media-processor-env
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "100m"
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: media-processor-worker-webhook
+  labels:
+    app: media-processor
+    role: worker-webhook
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: media-processor
+      role: worker-webhook
+  template:
+    metadata:
+      labels:
+        app: media-processor
+        role: worker-webhook
+    spec:
+      containers:
+        - name: worker
+          image: registry.lipcloud.org/media-processor:latest
+          env:
+            - name: WORKER_ROLE
+              value: webhook
+          envFrom:
+            - configMapRef:
+                name: media-processor-config
+            - secretRef:
+                name: media-processor-env
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "100m"
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
