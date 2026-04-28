@@ -3,7 +3,7 @@ kind: Kustomization
 namespace: media-processor
 resources:
   - ./configmap.yml
-  - ./secret.yml
+  - ./sealed-secret.yml
   - ./migrate-job.yml
   - ./deployment-api.yml
   - ./workers.yml

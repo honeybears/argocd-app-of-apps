@@ -16,9 +16,6 @@ spec:
     repoURL: https://github.com/honeybears/argocd-app-of-apps.git
     targetRevision: HEAD
   syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
     syncOptions:
       - RespectIgnoreDifferences=true
       - ApplyOutOfSyncOnly=true

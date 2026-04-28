@@ -1,9 +1,6 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  annotations:
-    argocd-image-updater.argoproj.io/image-list: postgres=public.ecr.aws/docker/library/postgres:18.1-alpine3.23
-    argocd-image-updater.argoproj.io/postgres.update-strategy: digest
   name: postgres
   namespace: argocd
 spec:
